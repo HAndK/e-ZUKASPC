@@ -5,15 +5,15 @@ describe Tag do
   
   context "ツイートを検索する" do
     before do
-      @tag = Tag.first
+      @tag = tags(:matsuerb)
     end
     
     it "tweets 結果あり" do
-      @tag.tweets.first.match(@tag.name).should_not be_nil
+      @tag.tweets.first[:text].match(@tag.name).should_not be_nil
     end
     
     it "tweets 結果なし" do
-      @tag.tweets.first.match("not found tag name").should be_nil
+      @tag.tweets.first[:text].match("notfound").should be_nil
     end
   end
 end
