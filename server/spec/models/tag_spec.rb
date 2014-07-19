@@ -8,9 +8,12 @@ describe Tag do
       @tag = Tag.first
     end
     
-    it "tweets" do
-      pending "TwitterAPIのテストの書き方がわからない"
-      @tag.tweets.should == ["testツイート"]
+    it "tweets 結果あり" do
+      @tag.tweets.first.match(@tag.name).should_not be_nil
+    end
+    
+    it "tweets 結果なし" do
+      @tag.tweets.first.match("not found tag name").should be_nil
     end
   end
 end
