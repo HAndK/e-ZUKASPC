@@ -1,0 +1,5 @@
+<ul>
+<% @twitter_client.search("#matsuerb").each do |tweet| %>
+  <li><%= tweet.text %></li>
+<% end %>
+</ul>
