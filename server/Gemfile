@@ -46,3 +46,7 @@ gem 'twitter'
 # RSpec
 gem 'rspec'
 gem 'rspec-rails'
+
+# grape
+gem 'grape'
+#gem 'grape-jbuilder'

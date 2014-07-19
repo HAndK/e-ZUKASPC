@@ -1,0 +1,17 @@
+<script>
+  var refreshTweet = function () {
+    tags.refreshTweet();
+    setTimeout("refreshTweet()", 1000);
+  };
+  $(function () {
+    refreshTweet();
+  });
+</script>
+<script id="tweet_template" type="text/template">
+<div class="row tweet">
+{{= text }}
+<hr>
+</div>
+</script>
+
+<div id="tweets" class="container-fluid"></div>
