@@ -39,7 +39,9 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+if RUBY_PLATFORM =~ /mingw/
+  gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+end
 
 # Twitter
 gem 'omniauth'
