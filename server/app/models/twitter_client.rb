@@ -5,7 +5,7 @@ class TwitterClient
   include Singleton
   
   def search(word)
-    client.search(word, :lang => "ja")
+    client.search(word)
   end
   
   private 
