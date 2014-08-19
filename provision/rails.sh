@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="4.1.1"
+version="4.1.0"
 
 source /usr/local/share/chruby/chruby.sh
 chruby $(cat ~/.ruby-version)

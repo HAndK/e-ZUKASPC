@@ -18,4 +18,18 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, path: "provision/mysql-server.sh"
   config.vm.provision :shell, path: "provision/postgresql-server.sh"
   config.vm.provision :shell, path: "provision/lib.sh"
+  config.vm.provision :shell, path: "provision/config.sh"
+  config.vm.provision :shell, path: "provision/git.sh"
+
+ if Vagrant.has_plugin?("vagrant-proxyconf") 
+    https_proxy = ENV['https_proxy'].to_s
+    https_proxy_user = ENV['https_proxy_user'].to_s
+    https_proxy_pass = ENV['https_proxy_pass'].to_s
+
+    unless https_proxy.empty? 
+      url = https_proxy.split('//').join("//#{https_proxy_user}:#{https_proxy_pass}@").chomp("/") + '/'
+      config.proxy.http = url
+      config.proxy.https = url
+    end
+  end
 end
