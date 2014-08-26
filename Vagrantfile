@@ -4,7 +4,10 @@ Vagrant.configure("2") do |config|
     "trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
   config.vm.provider :virtualbox do |vb|
     vb.customize [ 'modifyvm', :id, '--memory', 800 ]
+    vb.customize [ 'modifyvm', :id, '--natdnsproxy1', 'off']
+    vb.customize [ 'modifyvm', :id, '--natdnshostresolver1', 'off']
   end
+  
   config.vm.network "forwarded_port", guest: 3000, host: 4003
 
   config.vm.provision :shell, inline: "apt-get update"
