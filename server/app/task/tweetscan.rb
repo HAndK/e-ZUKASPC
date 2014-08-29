@@ -11,19 +11,25 @@ TWITTER_CONSUMER_KEY        ||= ENV['TWITTER_CONSUMER_KEY']
 TWITTER_CONSUMER_SECRET     ||= ENV['TWITTER_CONSUMER_SECRET']
 TWITTER_OAUTH_TOKEN         ||= ENV['TWITTER_OAUTH_TOKEN']
 TWITTER_OAUTH_TOKEN_SECRET  ||= ENV['TWITTER_OAUTH_TOKEN_SECRET']
-FOLLOWS                     ||= ENV['FOLLOWS']
+HASH_TAG                    ||= ENV['HASH_TAG']
+HTTP_PROXY                  ||= ENV['http_proxy']
 
 EventMachine::run {
+  puts HASH_TAG
+  puts HTTP_PROXY
+
   stream = Twitter::JSONStream.connect(
-    # :path    => "/1.1/statuses/filter.json?follow=#{FOLLOWS}",
-    :path    => "/1.1/statuses/filter.json?track=twitter",
+    :proxy  => HTTP_PROXY,
+    :method => 'POST',
+    :host   => "stream.twitter.com",
+    :path   => "/1.1/statuses/filter.json?track=#{HASH_TAG}",
     :oauth => {
       :consumer_key    => TWITTER_CONSUMER_KEY,
       :consumer_secret => TWITTER_CONSUMER_SECRET,
       :access_key      => TWITTER_OAUTH_TOKEN,
       :access_secret   => TWITTER_OAUTH_TOKEN_SECRET
     },
-    :ssl => true
+    :ssl => false
   )
 
   stream.each_item do |item|
