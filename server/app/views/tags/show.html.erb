@@ -9,9 +9,22 @@
 </script>
 <script id="tweet_template" type="text/template">
 <div class="row tweet">
-{{= text }}
-<hr>
+  <div class="col-md-1">
+    <img src="{{= user.profile_image_url }}" class="img-thumbnail">
+  </div>
+  <div class="col-md-11">
+    <div class="row">
+      <h4>{{= user.name }} <small>@{{= user.screen_name }}</small></h4>
+    </div>
+    <div class="row">
+      {{= text }}
+    </div>
+  </div>
+</div>
+<div class="row">
+  <hr>
 </div>
 </script>
 
+<h3>#<%= @tag.name %></h3>
 <div id="tweets" class="container-fluid"></div>

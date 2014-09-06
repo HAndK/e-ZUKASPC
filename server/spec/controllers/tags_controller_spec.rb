@@ -11,16 +11,33 @@ describe TagsController do
   
   describe Tag::API do
     describe "GET /tags/:tag_id/tweets.json" do
-      it "returns tweets" do
-        get "/#{tags(:matsuerb).id}/tweets.json"
-        last_response.status.should == 200
-        last_response.body.should == tags(:matsuerb).tweets.to_json
+      describe "matsuerb" do
+        before do 
+          get "/#{tags(:matsuerb).id}/tweets.json"
+        end
+
+        it "status" do
+          response.should be_success
+        end
+
+        it "response" do
+          last_response.body.should == tags(:matsuerb).tweets.to_json
+        end
       end
-      it "returns tweets" do
-        get "/#{tags(:notfound).id}/tweets.json"
-        last_response.status.should == 200
-        JSON.parse(last_response.body).should == []
-      end
+
+      describe "notfound" do
+        before do
+          get "/#{tags(:notfound).id}/tweets.json"
+        end
+
+        it "status" do
+          response.should be_success
+        end
+
+        it "response" do
+          JSON.parse(last_response.body).should == []
+        end
+      end      
     end
   end
 end
