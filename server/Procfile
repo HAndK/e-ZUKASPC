@@ -1,1 +1,1 @@
-tweetscan: bundle exec ruby app/task/tweetscan.rb
+tweetscan: bundle exec ruby bin/tweetscan.rb

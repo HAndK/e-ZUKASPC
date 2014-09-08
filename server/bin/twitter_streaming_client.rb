@@ -27,7 +27,7 @@ class TwitterStreamingClient
 
   def start
     puts "started!!"
-    @twitter_client.sample do |tweet|
+    @twitter_client.track('e-zuka') do |tweet|
       puts "-> tweet!!"
       next if tweet.lang != "ja" && tweet.user.time_zone != "Tokyo"
       params = { tweet: {} }
