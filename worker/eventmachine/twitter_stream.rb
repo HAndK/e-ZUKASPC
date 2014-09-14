@@ -34,8 +34,26 @@ EM.run do
   TweetStream::Client.new.on_error do |message|
     $stdout.print "message: #{message}\n"
     $stdout.flush
-  end.track(@track_words) do |status|
-    puts status.text
-    write_to_mongodb(status)
+  end.track(@track_words) do |tweet|
+    puts tweet.text
+
+    t = {
+      # ツイートの内容
+      text: tweet.text,
+      # ツイート内のハッシュタグ達
+      hashtags: tweet.hashtags.map(&:text),
+      user: {
+        # ツイッターID
+        screen_name: tweet.user.screen_name,
+        # ユーザ名
+        name: tweet.user.name,
+        # プロフィール写真
+        profile_image_url: tweet.user.profile_image_url.to_s
+      }
+    }
+
+    puts t
+
+    write_to_mongodb(tweet)
   end
 end
