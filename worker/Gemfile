@@ -1,0 +1,13 @@
+# A sample Gemfile
+source "https://rubygems.org"
+
+# EventMachine/Twitter Stream API
+gem 'eventmachine', '1.0.3'
+gem 'tweetstream'
+gem 'foreman'
+
+# Twitter
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'twitter'
+

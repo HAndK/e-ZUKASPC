@@ -1,0 +1,1 @@
+worker: bundle exec ruby eventmachine/twitter_stream.rb
