@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140719015820) do
+ActiveRecord::Schema.define(version: 20140915131443) do
 
   create_table "tags", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tweets", force: true do |t|
+    t.integer  "staff_member_id",                      null: false
+    t.text     "text",                                 null: false
+    t.string   "hashtags",        default: "--- []\n"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "screen_name"
+    t.string   "name"
+    t.string   "profile_image_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
