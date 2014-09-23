@@ -2,6 +2,8 @@ class Tweet < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :room
 
+	after_create :notice
+
 	def self.create(params)
 		# hash -> オブジェクト変換
 		tweet = Tweet.new(params[:tweet])
@@ -24,5 +26,15 @@ class Tweet < ActiveRecord::Base
 		tweet.save! 
 
 		tweet
+	end
+
+	private
+	def notice
+		Pusher[self.room.hash_tag.delete('#')].trigger('create', 
+			{
+			  tweet: self.attributes,
+			  user: self.user.attributes,
+			  room: self.room.attributes
+			})
 	end
 end
