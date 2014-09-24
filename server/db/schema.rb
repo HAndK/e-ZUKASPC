@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(version: 20140915131443) do
   end
 
   create_table "tweets", force: true do |t|
-    t.integer  "staff_member_id",                      null: false
-    t.text     "text",                                 null: false
-    t.string   "hashtags",        default: "--- []\n"
+    t.integer  "user_id",                         null: false
+    t.text     "text",                            null: false
+    t.string   "hashtags",   default: "--- []\n"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
