@@ -11,14 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20140915131443) do
-=======
 ActiveRecord::Schema.define(version: 20140923004848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
->>>>>>> 9a3b0c8... roomモデルの追加
 
   create_table "rooms", force: true do |t|
     t.string   "hash_tag"
@@ -37,16 +33,10 @@ ActiveRecord::Schema.define(version: 20140923004848) do
   end
 
   create_table "tweets", force: true do |t|
-<<<<<<< HEAD
-    t.integer  "user_id",                         null: false
-    t.text     "text",                            null: false
-    t.string   "hashtags",   default: "--- []\n"
-=======
     t.integer  "user_id",                 null: false
     t.integer  "room_id",                 null: false
     t.text     "text",                    null: false
     t.string   "hashtags",   default: [],              array: true
->>>>>>> 9a3b0c8... roomモデルの追加
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -59,12 +49,9 @@ ActiveRecord::Schema.define(version: 20140923004848) do
     t.datetime "updated_at"
   end
 
-<<<<<<< HEAD
-=======
   add_index "users", ["screen_name"], name: "index_users_on_screen_name", unique: true, using: :btree
 
   add_foreign_key "tweets", "rooms", name: "tweets_room_id_fk"
   add_foreign_key "tweets", "users", name: "tweets_user_id_fk"
 
->>>>>>> 9a3b0c8... roomモデルの追加
 end
