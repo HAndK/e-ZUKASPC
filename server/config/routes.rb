@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   mount Tag::API => '/tags'
   
   resources :tweets, :only => [:index, :create]
+  resources :rooms
   
   root :to => "tags#new"
 end
