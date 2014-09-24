@@ -19,5 +19,20 @@ module Server
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    # generatorの設定
+    config.generators do |g|
+      g.orm :active_record
+      g.template_engine :erb
+      g.test_framework  :rspec, :fixture => true
+      g.fixture_replacement :factory_girl, :dir => "spec/factories"
+      g.view_specs false
+      g.controller_specs true
+      g.routing_specs false
+      g.helper_specs false
+      g.request_specs false
+      g.assets false
+      g.helper false
+    end
   end
 end
